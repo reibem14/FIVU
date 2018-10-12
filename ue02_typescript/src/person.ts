@@ -15,16 +15,15 @@ export class Person {
 
 
      public get vorname   (): string {
-         return this.vorname ;
+         return this._vorname ;
      }
 
      public get nachname  (): string {
-         return this.nachname ;
+         return this._nachname ;
     }
 
      public get birthYear (): number {
-         return this.birthYear;
+         return this._birthYear;
      }
-
 
 }
