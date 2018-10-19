@@ -1,4 +1,6 @@
-
+/**
+ * Datenerhaltungsklasse für Person
+ */
 export class Person {
 
     private _vorname: string  ;
@@ -14,7 +16,7 @@ export class Person {
      }
 
 
-     public get vorname   (): string {
+     public get vorname   (): string {      /*vorname ist keine Funktion sondern ein Attribut des Objekts*/
          return this._vorname ;
      }
 
@@ -26,4 +28,14 @@ export class Person {
          return this._birthYear;
      }
 
+     public set vorname(v: string) {
+         if (v === undefined || v === null || v === '') {
+             throw Error('invalid value');
+         }
+         this._vorname = v;
+     }
+
+     public toString (): string {
+         return this._nachname + ' ' + this._vorname;
+     }
 }
