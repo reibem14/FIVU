@@ -9,4 +9,4 @@ class Main {
     }
 }
 
-Main.main();
+Main.main();    /*Funktionsaufruf ist außerhalb*/
