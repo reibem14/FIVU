@@ -14,11 +14,13 @@ export class Server {
 
     public constructor (port: number) {        /*Konstruktor mit Schlüsselwort constructor; nur 1 Konstruktor in TS automatisch public
                                                 (in Java mehrer Konstruktoren)*/
+        const assetsPath = path.join(__dirname, '..', 'assets');
         this._port = port;
         this._server = express();       /*wie ich es aufrufe finde ich unter: im Internet(meist README.md Datei) */
+        this._server.use('/', express.static(assetsPath));
         this._server.get('/liste', (req, res, next) => this.handleGetListe(req, res, next));  /*(req, resp, next) ruft Handlermethode auf
                                                                                                 welche zum Objekt gebudnen ist */
-        this._server.get('/image.png', (req, res, next) => this.handleGetImage(res));
+        this._server.get('/image.png', (req, res, next) => this.sendImage(res));
 
     }
 
@@ -40,7 +42,7 @@ export class Server {
         res.sendFile(filePath);
     }
 
-    private handleGetImage(res: express.Response) {
+    private sendImage(res: express.Response) {
         const filePath = path.join(__dirname, '..', 'assets', 'image.png');
         res.sendFile(filePath);
     }
