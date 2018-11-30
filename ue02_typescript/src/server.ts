@@ -3,8 +3,6 @@
 
 import * as path from 'path';
 import * as bodyParser from 'body-parser';
-
-
 import * as express from 'express'; /*Frameworker; hat zusätzliche Tools für Web Programmierung; über node package-Manager installieren; */
                                     /*alles was in Express enthalen ist, kann mittels express abgerufen werden */
 
@@ -18,8 +16,14 @@ export class Server {
         const assetsPath = path.join(__dirname, '..', 'assets');
         this._port = port;
         this._server = express();       /*wie ich es aufrufe finde ich unter: im Internet(meist README.md Datei) */
+
+        this._server.set('views', path.join(__dirname, 'views'));
+        const engine = this._server.set('view engine', 'pug');
+        engine.locals.pretty = true;
+
         this._server.use('/', express.static(assetsPath));  /*express.static(),dass auf alle Dateien im Assests Ornder zugegriffen werden kann*/
-        this._server.use(bodyParser.urlencoded);
+        this._server.use(bodyParser.json());
+        this._server.use(bodyParser.urlencoded());
         this._server.post('/login.html', (req, res, next) => this.handlePostLogin(req, res, next));
         this._server.get('/liste', (req, res, next) => this.handleGetListe(req, res, next));  /*(req, resp, next) ruft Handlermethode auf
                                                                                                 welche zum Objekt gebudnen ist */
@@ -39,19 +43,20 @@ export class Server {
     }
 
     private handlePostLogin(req: express.Request, res: express.Response, next: express.NextFunction) {
-        debugger;
+        console.log(req.body);
+        if (req.body.email === 'hallo@test.at' &&
+            req.body.password === 'geheim') {
+            res.render('welcome.pug', {anrede: "Herr", name:"Rossi"});
+        } else {
+            res.status(404).send('404 NOT AUTHORIZED');
+        }
         next();
     }
 
     private handleGetListe(req: express.Request, res: express.Response, next: express.NextFunction) {
-
+        debugger;
         const filePath = path.join(__dirname, '..', 'assets', 'liste.html');
         console.log(filePath);
         res.sendFile(filePath);
     }
-
-    // private sendImage(res: express.Response) {
-    //     const filePath = path.join(__dirname, '..', 'assets', 'image.png');
-    //     res.sendFile(filePath);
-    // }
 }
