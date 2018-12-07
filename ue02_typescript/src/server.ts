@@ -26,8 +26,9 @@ export class Server {
         this._server.use(bodyParser.urlencoded());
         this._server.post('/login.html', (req, res, next) => this.handlePostLogin(req, res, next));
         this._server.get('/liste', (req, res, next) => this.handleGetListe(req, res, next));  /*(req, resp, next) ruft Handlermethode auf
-                                                                                                welche zum Objekt gebudnen ist */
+                                                                                                welche zum Objekt gebunden ist */
         // this._server.get('/image.png', (req, res, next) => this.sendImage(res));
+        this._server.get('/welcome', (req, res, next) => this.handleGetWelcome(req, res));
 
     }
 
@@ -43,10 +44,10 @@ export class Server {
     }
 
     private handlePostLogin(req: express.Request, res: express.Response, next: express.NextFunction) {
-        console.log(req.body);
         if (req.body.email === 'hallo@test.at' &&
             req.body.password === 'geheim') {
-            res.render('welcome.pug', {anrede: "Herr", name:"Rossi"});
+            // res.render('welcome.pug', {anrede: "Herr", name:"Rossi"});
+            res.redirect('/welcome');
         } else {
             res.status(404).send('404 NOT AUTHORIZED');
         }
@@ -54,9 +55,12 @@ export class Server {
     }
 
     private handleGetListe(req: express.Request, res: express.Response, next: express.NextFunction) {
-        debugger;
         const filePath = path.join(__dirname, '..', 'assets', 'liste.html');
         console.log(filePath);
         res.sendFile(filePath);
+    }
+
+    private handleGetWelcome(req: express.Request, res: express.Response) {
+        res.render('welcome.pug', {anrede: 'Herr', name: 'Rossi'});
     }
 }
