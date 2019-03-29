@@ -11,7 +11,7 @@ export class ServerService {
         // ng serve      --> development mode, server running on same host
         // npm run build --prod --> production mode, server can run on any host and supports loading ngx app
         // this._serverUri = isDevMode() ? 'http://localhost:8080' : '';
-        this._serverUri = isDevMode() ? 'http://pi-test:8080' : '';
+        this._serverUri = isDevMode() ? 'http://pi08:8080' : '';
     }
 
     public async httpGetJson(resource: string): Promise<Object> {

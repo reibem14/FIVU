@@ -21,7 +21,7 @@
         },
         {
             "name": "Launch on RPI",
-            "address": "10.200.114.208",
+            "address": "pi08",
             "remoteRoot": "/home/pi/rpi-server-ngx/server/",
             "smartStep": true,
             "stopOnEntry": false,
@@ -40,7 +40,7 @@
         },
         {
             "name": "Build/Copy/Attach to RPI",
-            "address": "10.200.114.208",
+            "address": "pi08",
             "remoteRoot": "/home/pi/rpi-server-ngx/server/",
             "smartStep": true,
             "stopOnEntry": false,

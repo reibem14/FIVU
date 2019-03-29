@@ -2,7 +2,7 @@
 
 const fs = require('fs');
 
-const remoteHostname = '10.200.114.208';
+const remoteHostname = 'pi08';
 const remoteTargetDir = '/home/pi/rpi-server-ngx';
 const sshConfig = {
     host: remoteHostname,
