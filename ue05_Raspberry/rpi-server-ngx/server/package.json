@@ -17,7 +17,7 @@
     "bootstrap": "^4.0.0-alpha.6",
     "cors": "^2.8.5",
     "debug-sx": "^0.2.4",
-    "express": "^4.16.4",
+    "express": "^4.17.3",
     "morgan": "^1.9.1",
     "nconf": "^0.10.0",
     "pug": "^2.0.3",
